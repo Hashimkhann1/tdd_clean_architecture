@@ -1,7 +1,6 @@
 
 
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tdd_clean_architecture/core/utils/typedef.dart';
@@ -53,5 +52,39 @@ void main() {
     });
 
   });
+  
+  group("toJson", () {
+    test("should return a [JSON] string with the right data", () {
+
+      /// Act
+      final result = tModel.toJson();
+
+      final tJson = jsonEncode({
+        "id": "1",
+        "avatar": "_empty.avatar",
+        "createdAt": "_empty.createdAt",
+        "name": "_empty.name"
+      });
+
+      /// Assert
+      expect(result, tJson);
+
+    });
+  });
+
+  group("copyWith", (){
+
+    test("should return a [UserModel] with the different data", () {
+
+      final result = tModel.copyWith(name: "Paul");
+
+      expect(result.name, equals('Paul'));
+      // expect(result, equals('Paul'));
+
+    });
+
+  });
+
+  
 
 }
